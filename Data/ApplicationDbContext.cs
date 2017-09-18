@@ -10,6 +10,12 @@ namespace StackOAuth.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<AnswersModel> Answers {get; set;}
+        public DbSet<CommentsModel> Comments {get; set;}
+        public DbSet<QtiesModel> Qties {get; set;}
+        public DbSet<QuestionsModel> Questions {get; set;}
+        public DbSet<TagsModel> Tags {get; set;}
+        public DbSet<UserModel> Usersss {get; set;}
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
