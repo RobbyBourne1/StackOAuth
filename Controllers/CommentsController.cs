@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace StackOAuth.Controllers
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CommentsController(ApplicationDbContext context)
+        public CommentsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -47,7 +50,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Comments/Create
-        public IActionResult Create()
+        public IActionResult Create(string QuestionId)
         {
             return View();
         }
@@ -57,15 +60,18 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Body,PostDate,UserId")] CommentsModel commentsModel)
+        public async Task<IActionResult> Create([FromRoute] string id, [FromForm] string body)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(commentsModel);
+                var user = await _userManager.GetUserAsync(User);
+                var newAnswer = new CommentsModel { QuestionId = id, Body = body, UserId = user.Id };
+                var answer = await _context.Answers.SingleOrDefaultAsync(s => s.Id == id);
+                _context.Add(newAnswer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Questions", new { id });
             }
-            return View(commentsModel);
+            return View();
         }
 
         // GET: Comments/Edit/5

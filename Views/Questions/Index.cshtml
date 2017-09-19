@@ -44,7 +44,7 @@
             </td>
             <td>
                 <a asp-controller="Answers" asp-action="Create" asp-route-id="@item.Id">Answer</a> |
-                <a asp-controller="Comments" asp-action="Create">Comment</a> 
+                <a asp-controller="Comments" asp-action="Create" asp-route-id="@item.Id">Comment</a> 
             </td>
         </tr>
 }
