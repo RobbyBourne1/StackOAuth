@@ -3,7 +3,7 @@ namespace StackOAuth.Models
 {
     public class AnswersModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Body { get; set; }
         public int VoteCount { get; set; }
         public DateTime PostDate { get; set; }

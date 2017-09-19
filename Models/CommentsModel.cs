@@ -3,7 +3,7 @@ namespace StackOAuth.Models
 {
     public class CommentsModel
     { 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Body { get; set; }
         public DateTime PostDate { get; set; }
         public string UserId { get; set; }
