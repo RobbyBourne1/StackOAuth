@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace StackOAuth.Controllers
     public class AnswersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AnswersController(ApplicationDbContext context)
+        public AnswersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -58,17 +61,18 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(string QuestionId,[Bind("Id,Body,VoteCount,PostDate")] AnswersModel answersModel)
+        public async Task<IActionResult> Create([FromRoute] string id, [FromForm] string body)
         {
             if (ModelState.IsValid)
             {
-                answersModel.UserId = "tacos";
-                answersModel.QuestionId = QuestionId;
-                _context.Add(answersModel);
+                var user = await _userManager.GetUserAsync(User);
+                var newAnswer = new AnswersModel {QuestionId = id, Body = body, UserId = user.Id};
+                var answer = await _context.Answers.SingleOrDefaultAsync(s => s.Id == id);
+                _context.Add(newAnswer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Questions", new {id});
             }
-            return View(answersModel);
+            return View();
         }
 
         // GET: Answers/Edit/5
