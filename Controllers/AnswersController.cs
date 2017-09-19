@@ -47,8 +47,9 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Answers/Create
-        public IActionResult Create()
+        public IActionResult Create(string QuestionId)
         {
+
             return View();
         }
 
@@ -57,10 +58,12 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Body,VoteCount,PostDate,UserId")] AnswersModel answersModel)
+        public async Task<IActionResult> Create(string QuestionId,[Bind("Id,Body,VoteCount,PostDate")] AnswersModel answersModel)
         {
             if (ModelState.IsValid)
             {
+                answersModel.UserId = "tacos";
+                answersModel.QuestionId = QuestionId;
                 _context.Add(answersModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -89,7 +92,7 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Body,VoteCount,PostDate,UserId")] AnswersModel answersModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Body,VoteCount,PostDate,UserId,QuestionId")] AnswersModel answersModel)
         {
             if (id != answersModel.Id)
             {

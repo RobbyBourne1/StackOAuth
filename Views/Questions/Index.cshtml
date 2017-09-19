@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>
             <td>
-                <a asp-controller="Answers" asp-action="Create">Answer</a> |
+                <a asp-controller="Answers" asp-action="Create" asp-route-id="@item.Id">Answer</a> |
                 <a asp-controller="Comments" asp-action="Create">Comment</a> 
             </td>
         </tr>
