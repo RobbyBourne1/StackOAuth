@@ -19,13 +19,7 @@
                     @Html.DisplayNameFor(model => model.Body)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.VoteCount)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.PostDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserId)
                 </th>
             <th></th>
         </tr>
@@ -37,21 +31,14 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VoteCount)
+               <a asp-controller="Questions" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Body)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-controller="Answers" asp-action="Create">Answer</a> |
+                <a asp-controller="Comments" asp-action="Create">Comment</a> 
             </td>
         </tr>
 }
