@@ -4,14 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Questions</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add a Question</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+                <th>
+                    Vote Count
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
                 </th>
@@ -19,7 +22,7 @@
                     @Html.DisplayNameFor(model => model.Body)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PostDate)
+                    Date Posted
                 </th>
             <th></th>
         </tr>
@@ -27,6 +30,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoteCount)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
