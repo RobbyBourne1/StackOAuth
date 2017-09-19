@@ -15,7 +15,7 @@ namespace StackOAuth.Data
         public DbSet<QtiesModel> Qties {get; set;}
         public DbSet<QuestionsModel> Questions {get; set;}
         public DbSet<TagsModel> Tags {get; set;}
-        public DbSet<UserModel> Usersss {get; set;}
+        public DbSet<ApplicationUser> AppUser {get; set;}
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

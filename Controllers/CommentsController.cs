@@ -26,7 +26,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Comments/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Comments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Body,PostDate,UserId")] CommentsModel commentsModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Body,PostDate,UserId")] CommentsModel commentsModel)
         {
             if (id != commentsModel.Id)
             {
@@ -117,7 +117,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Comments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace StackOAuth.Controllers
         // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var commentsModel = await _context.Comments.SingleOrDefaultAsync(m => m.Id == id);
             _context.Comments.Remove(commentsModel);
@@ -145,7 +145,7 @@ namespace StackOAuth.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CommentsModelExists(int id)
+        private bool CommentsModelExists(string id)
         {
             return _context.Comments.Any(e => e.Id == id);
         }

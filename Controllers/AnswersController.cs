@@ -26,7 +26,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Answers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Answers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Body,VoteCount,PostDate,UserId")] AnswersModel answersModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Body,VoteCount,PostDate,UserId")] AnswersModel answersModel)
         {
             if (id != answersModel.Id)
             {
@@ -117,7 +117,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Answers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace StackOAuth.Controllers
         // POST: Answers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var answersModel = await _context.Answers.SingleOrDefaultAsync(m => m.Id == id);
             _context.Answers.Remove(answersModel);
@@ -145,7 +145,7 @@ namespace StackOAuth.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AnswersModelExists(int id)
+        private bool AnswersModelExists(string id)
         {
             return _context.Answers.Any(e => e.Id == id);
         }

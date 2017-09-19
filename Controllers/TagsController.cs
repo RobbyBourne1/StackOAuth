@@ -26,7 +26,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Tags/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Tags/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TagName")] TagsModel tagsModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,TagName")] TagsModel tagsModel)
         {
             if (id != tagsModel.Id)
             {
@@ -117,7 +117,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Tags/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace StackOAuth.Controllers
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var tagsModel = await _context.Tags.SingleOrDefaultAsync(m => m.Id == id);
             _context.Tags.Remove(tagsModel);
@@ -145,7 +145,7 @@ namespace StackOAuth.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TagsModelExists(int id)
+        private bool TagsModelExists(string id)
         {
             return _context.Tags.Any(e => e.Id == id);
         }

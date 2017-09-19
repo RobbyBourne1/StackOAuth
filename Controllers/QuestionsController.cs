@@ -26,7 +26,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Questions/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Questions/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace StackOAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,VoteCount,PostDate,UserId")] QuestionsModel questionsModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Title,Body,VoteCount,PostDate,UserId")] QuestionsModel questionsModel)
         {
             if (id != questionsModel.Id)
             {
@@ -117,7 +117,7 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Questions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace StackOAuth.Controllers
         // POST: Questions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var questionsModel = await _context.Questions.SingleOrDefaultAsync(m => m.Id == id);
             _context.Questions.Remove(questionsModel);
@@ -145,7 +145,7 @@ namespace StackOAuth.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool QuestionsModelExists(int id)
+        private bool QuestionsModelExists(string id)
         {
             return _context.Questions.Any(e => e.Id == id);
         }
