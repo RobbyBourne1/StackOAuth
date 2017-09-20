@@ -30,17 +30,13 @@
     </dl>
 </div>
 <div>
-    <p>@Model.AnswersModel</p>
-    @foreach(var item in Model.AnswersModels)
+    <p>@Model.AnswersModel.Count()</p>
+    @foreach(var answer in Model.AnswersModel)
     {
-       <p>@item.VoteCount</p>
+        <p>@answer.Body</p>
     }
 </div>
 <div>
-    <!-- <form asp-action="Create" asp-route-id=@Model.Id asp-controller="Answers">
-        <textarea rows="5" cols="50" name="body"></textarea>
-        <button>Answer</button>
-    </form> -->
     <form asp-action="Create" asp-route-id=@Model.Id asp-controller="Answers">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

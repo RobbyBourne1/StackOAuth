@@ -8,9 +8,9 @@ namespace StackOAuth.Models
         public DateTime PostDate { get; set; } = DateTime.Now;
         public string UserId { get; set; }
         public ApplicationUser AppUser { get; set; }
-        public string AnswersId { get; set; }
+        public string AnswersModelId { get; set; }
         public AnswersModel AnswersModel { get; set; }  
-        public string QuestionId { get; set; }
+        public string QuestionModelId { get; set; }
         public QuestionsModel QuestionsModel { get; set; }
         public CommentsModel()
         {

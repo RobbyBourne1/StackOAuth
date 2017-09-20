@@ -11,9 +11,10 @@ using System;
 namespace StackOAuth.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170920184545_ChangedFKForQuestionsName")]
+    partial class ChangedFKForQuestionsName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,6 +215,8 @@ namespace StackOAuth.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AnswersId");
+
                     b.Property<string>("AnswersModelId");
 
                     b.Property<string>("AppUserId");
@@ -222,7 +225,7 @@ namespace StackOAuth.Migrations
 
                     b.Property<DateTime>("PostDate");
 
-                    b.Property<string>("QuestionModelId");
+                    b.Property<string>("QuestionId");
 
                     b.Property<string>("QuestionsModelId");
 

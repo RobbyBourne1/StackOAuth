@@ -69,7 +69,7 @@ namespace StackOAuth.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                var newAnswer = new AnswersModel {QuestionId = id, Body = body, UserId = user.Id};
+                var newAnswer = new AnswersModel {QuestionsModelId = id, Body = body, UserId = user.Id};
                 _context.Add(newAnswer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Questions", new {id});
