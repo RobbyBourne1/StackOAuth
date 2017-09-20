@@ -40,7 +40,7 @@ namespace StackOAuth.Controllers
             }
 
             var answersModel = await _context.Answers
-                .Include(q => q.AppUser)
+                .Include(q => q.ApplicationUser)
                 .Include(i => i.QuestionsModel)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (answersModel == null)

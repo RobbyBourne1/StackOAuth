@@ -8,7 +8,7 @@ namespace StackOAuth.Models
         public int VoteCount { get; set; }
         public DateTime PostDate { get; set; } = DateTime.Now;
         public string ApplicationUserId { get; set; }
-        public ApplicationUser AppUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         
         public string QuestionsModelId { get; set; }
         
