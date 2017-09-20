@@ -40,9 +40,9 @@ namespace StackOAuth.Controllers
                 .Include(q => q.AppUser)
                 .Include(i => i.AnswersModel)
                 .SingleOrDefaultAsync(m => m.Id == id);
-                var test = _context.Answers.Where(w => w.QuestionsModelId == id);
-                Console.WriteLine(test.Count());
-                Console.WriteLine(questionsModel.AnswersModel.Count());
+                // var test = _context.Answers.Where(w => w.QuestionsModelId == id);
+                // Console.WriteLine(test.Count());
+                // Console.WriteLine(questionsModel.AnswersModel.Count());
             if (questionsModel == null)
             {
                 return NotFound();
