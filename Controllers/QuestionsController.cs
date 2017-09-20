@@ -37,7 +37,11 @@ namespace StackOAuth.Controllers
             }
 
             var questionsModel = await _context.Questions
+                .Include(q => q.AppUser)
+                .Include(i => i.AnswersModel)
                 .SingleOrDefaultAsync(m => m.Id == id);
+                var test = _context.Answers.Where(w => w.QuestionId == id);
+                Console.WriteLine(test.Count());
             if (questionsModel == null)
             {
                 return NotFound();

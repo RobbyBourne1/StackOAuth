@@ -13,7 +13,7 @@ namespace StackOAuth.Models
         public string UserId { get; set; }
         public ApplicationUser AppUser { get; set; }
 
-        public ICollection<AnswersModel> Answers { get; set; } = new HashSet<AnswersModel>();
+        public ICollection<AnswersModel> AnswersModel { get; set; } = new HashSet<AnswersModel>();
         public QuestionsModel()
         {
 

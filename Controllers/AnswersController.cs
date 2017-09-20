@@ -40,6 +40,8 @@ namespace StackOAuth.Controllers
             }
 
             var answersModel = await _context.Answers
+                .Include(q => q.AppUser)
+                .Include(i => i.QuestionsModel)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (answersModel == null)
             {
@@ -50,9 +52,10 @@ namespace StackOAuth.Controllers
         }
 
         // GET: Answers/Create
-        public IActionResult Create(string QuestionId)
+        public IActionResult Create()
         {
-
+            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["QuestionId"] = new SelectList(_context.Questions, "Id", "Id");
             return View();
         }
 
