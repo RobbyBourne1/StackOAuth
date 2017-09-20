@@ -32,8 +32,9 @@
 <div>
     <p>@Model.AnswersModel.Count()</p>
     @foreach(var answer in Model.AnswersModel)
-    {
+    {   
         <p>@answer.Body</p>
+        <span>@answer.AppUser.UserName</span>
     }
 </div>
 <div>

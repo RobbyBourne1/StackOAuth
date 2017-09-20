@@ -65,7 +65,7 @@ namespace StackOAuth.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                var newComment = new CommentsModel { QuestionModelId = id, Body = body, UserId = user.Id };
+                var newComment = new CommentsModel { QuestionModelId = id, Body = body, ApplicationUserId = user.Id };
                 _context.Add(newComment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Questions", new { id });

@@ -7,7 +7,7 @@ namespace StackOAuth.Models
         public string Body { get; set; }
         public int VoteCount { get; set; }
         public DateTime PostDate { get; set; } = DateTime.Now;
-        public string UserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser AppUser { get; set; }
         
         public string QuestionsModelId { get; set; }

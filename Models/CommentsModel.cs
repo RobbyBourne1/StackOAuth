@@ -6,7 +6,7 @@ namespace StackOAuth.Models
         public string Id { get; set; }
         public string Body { get; set; }
         public DateTime PostDate { get; set; } = DateTime.Now;
-        public string UserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser AppUser { get; set; }
         public string AnswersModelId { get; set; }
         public AnswersModel AnswersModel { get; set; }  
