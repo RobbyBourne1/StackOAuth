@@ -67,7 +67,6 @@ namespace StackOAuth.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
                 var newAnswer = new AnswersModel {QuestionId = id, Body = body, UserId = user.Id};
-                var answer = await _context.Answers.SingleOrDefaultAsync(s => s.Id == id);
                 _context.Add(newAnswer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Questions", new {id});

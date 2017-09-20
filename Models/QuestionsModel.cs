@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 namespace StackOAuth.Models
 {
     public class QuestionsModel
@@ -10,6 +12,8 @@ namespace StackOAuth.Models
         public DateTime PostDate { get; set; } = DateTime.Now;
         public string UserId { get; set; }
         public ApplicationUser AppUser { get; set; }
+
+        public ICollection<AnswersModel> Answers { get; set; } = new HashSet<AnswersModel>();
         public QuestionsModel()
         {
 
